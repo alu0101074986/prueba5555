@@ -10,13 +10,15 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
-
+import java.security.SecureRandom;
 /**
  * @author ArtOfSoul
  */
 
 public class TileMap {
 
+    // Agregamos los cambios para solventar security hotspots
+    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
     // position
     private double x;
     private double y;
@@ -193,8 +195,8 @@ public class TileMap {
 
     public void update() {
         if (shaking) {
-            this.x += Math.random() * intensity - intensity / 2.0;
-            this.y += Math.random() * intensity - intensity / 2.0;
+            this.x += SECURE_RANDOM.nextDouble() * intensity - intensity / 2.0;
+            this.y += SECURE_RANDOM.nextDouble() * intensity - intensity / 2.0;
         }
     }
 
